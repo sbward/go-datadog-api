@@ -14,6 +14,7 @@ import (
 	"errors"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"strings"
 )
@@ -42,6 +43,7 @@ func (self *Client) doJsonRequest(method, api string,
 			return err
 		}
 		bodyreader = bytes.NewReader(bjson)
+		log.Println("Sent to DataDog: " + string(bjson))
 	}
 
 	req, err := http.NewRequest(method, self.uriForAPI(api), bodyreader)
