@@ -38,5 +38,5 @@ func (self *Client) PostMetricsResp(series []Metric) (map[string]interface{}, er
 	var resp map[string]interface{}
 	err := self.doJsonRequest("POST", "/v1/series",
 		reqPostSeries{Series: series}, &resp)
-	return resp, error
+	return resp, err
 }
