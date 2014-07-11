@@ -8,9 +8,9 @@
 
 package datadog
 
-// DataPoint is a tuple of [UNIX timestamp, value]. This has to use floats
+// DataPoint is a tuple of [UNIX timestamp, value]. This has to use interface{}
 // because the value could be non-integer.
-type DataPoint [2]float64
+type DataPoint [2]interface{}
 
 // Metric represents a collection of data points that we might send or receive
 // on one single metric line.
