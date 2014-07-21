@@ -8,9 +8,21 @@
 
 package datadog
 
+import "encoding/json"
+
 // DataPoint is a tuple of [UNIX timestamp, value]. This has to use interface{}
 // because the value could be non-integer.
-type DataPoint [2]interface{}
+type DataPoint struct {
+	Time  time.Time
+	Value float64
+}
+
+func (p *Datapoint) MarshalJSON() ([]byte, error) {
+	return json.Marshal([2]interface{}{
+		p.Time,
+		p.Value,
+	})
+}
 
 // Metric represents a collection of data points that we might send or receive
 // on one single metric line.
